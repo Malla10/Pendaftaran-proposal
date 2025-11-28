@@ -14,11 +14,11 @@ class DosenSeeder extends Seeder
      */
     public function run(): void
     {
-        // Dosen 1 - IoT & Embedded System
+        // Dosen 1 - Sistem dan Teknologi Informasi
         $user1 = User::create([
             'username' => 'dosen1',
-            'name' => 'Dr. Ahmad Fauzi, M.Kom',
-            'email' => 'ahmad.fauzi@unmus.ac.id',
+            'name' => 'Stanly Hence Dolfi Loppies. S,Kom., M.Kom',
+            'email' => 'Stanly@unmus.ac.id',
             'password' => Hash::make('dosen123'),
             'role' => 'dosen',
             'nidn' => '0123456789',
@@ -27,18 +27,18 @@ class DosenSeeder extends Seeder
         Dosen::create([
             'user_id' => $user1->id,
             'nidn' => '0123456789',
-            'nama' => 'Dr. Ahmad Fauzi, M.Kom',
-            'bidang_penelitian' => 'Internet of Things & Embedded System',
-            'keywords' => 'IoT, Sensor, Embedded System, Arduino, ESP32, Smart Home, Wireless Sensor Network',
+            'nama' => 'Stanly Hence Dolfi Loppies. S,Kom., M.Kom',
+            'bidang_penelitian' => 'Sistem dan Teknologi Informasi',
+            'keywords' => 'Sistem Informasi, Teknologi Informasi, Information System, IT Infrastructure, Database Management, Software Development, Networking, Cybersecurity, Cloud Computing, Big Data, Data Analytics, IT Governance, Enterprise Architecture, Decision Support System, Information Management',
             'kuota_bimbingan' => 10,
             'kuota_terpakai' => 0,
         ]);
 
-        // Dosen 2 - AI & Machine Learning
+        // Dosen 2 - Sistem Informasi Geografis
         $user2 = User::create([
             'username' => 'dosen2',
-            'name' => 'Dr. Siti Nurhaliza, M.T',
-            'email' => 'siti.nurhaliza@unmus.ac.id',
+            'name' => 'Fransiskus Xavierus, S.Kom., M.Kom',
+            'email' => 'Fransiskus@unmus.ac.id',
             'password' => Hash::make('dosen123'),
             'role' => 'dosen',
             'nidn' => '0123456790',
@@ -47,18 +47,18 @@ class DosenSeeder extends Seeder
         Dosen::create([
             'user_id' => $user2->id,
             'nidn' => '0123456790',
-            'nama' => 'Dr. Siti Nurhaliza, M.T',
-            'bidang_penelitian' => 'Artificial Intelligence & Machine Learning',
-            'keywords' => 'AI, Machine Learning, Deep Learning, Neural Network, Computer Vision, Natural Language Processing',
+            'nama' => 'Fransiskus Xavierus, S.Kom., M.Kom',
+            'bidang_penelitian' => 'Geographic Information System, ',
+            'keywords' => 'Geographic Information System (GIS), Spatial Data, Geolocation, Mapping, Raster Data, Vector Data, Digital Image Processing, Image Segmentation, Image Classification, Feature Extraction, Image Enhancement, Spatial Analysis, Data Visualization, Geospatial Technology, Computer Vision (dasar), Decision Support System (DSS)',
             'kuota_bimbingan' => 10,
             'kuota_terpakai' => 0,
         ]);
 
-        // Dosen 3 - Web Development & Mobile
+        // Dosen 3 - Sistem Pendukung Keputusan
         $user3 = User::create([
             'username' => 'dosen3',
-            'name' => 'Budi Santoso, S.Kom, M.Kom',
-            'email' => 'budi.santoso@unmus.ac.id',
+            'name' => 'Ir. Selfina Pare, S.Kom., M.T',
+            'email' => 'Selfina@unmus.ac.id',
             'password' => Hash::make('dosen123'),
             'role' => 'dosen',
             'nidn' => '0123456791',
@@ -67,18 +67,18 @@ class DosenSeeder extends Seeder
         Dosen::create([
             'user_id' => $user3->id,
             'nidn' => '0123456791',
-            'nama' => 'Budi Santoso, S.Kom, M.Kom',
-            'bidang_penelitian' => 'Web Development & Mobile Application',
-            'keywords' => 'Web Development, Mobile App, Laravel, React, Flutter, Android, iOS, Progressive Web App',
+            'nama' => 'Ir. Selfina Pare, S.Kom., M.T',
+            'bidang_penelitian' => 'Sistem Pendukung Keputusan',
+            'keywords' => 'Konsep Support SPK, Komponen Utama SPK, Tipe Modul dalam SPK, Metode-Metode SPK, Elemen Keputusan, Proses Pengambilan Keputusan, Teknik Analisis Data dalam SPK, Teknologi Pendukung',
             'kuota_bimbingan' => 10,
             'kuota_terpakai' => 0,
         ]);
 
-        // Dosen 4 - Data Mining & Big Data
+        // Dosen 4 - Rekayasa Perangkat Lunak
         $user4 = User::create([
             'username' => 'dosen4',
-            'name' => 'Dr. Rina Wati, M.Sc',
-            'email' => 'rina.wati@unmus.ac.id',
+            'name' => 'Muhammad Hasbi, M.Kom',
+            'email' => 'Hasbi@unmus.ac.id',
             'password' => Hash::make('dosen123'),
             'role' => 'dosen',
             'nidn' => '0123456792',
@@ -87,18 +87,18 @@ class DosenSeeder extends Seeder
         Dosen::create([
             'user_id' => $user4->id,
             'nidn' => '0123456792',
-            'nama' => 'Dr. Rina Wati, M.Sc',
-            'bidang_penelitian' => 'Data Mining & Big Data Analytics',
-            'keywords' => 'Data Mining, Big Data, Data Analytics, Business Intelligence, Data Warehouse, Python, R',
+            'nama' => 'Muhammad Hasbi, M.Kom',
+            'bidang_penelitian' => 'Rekayasa Perangkat Lunak',
+            'keywords' => 'Software Process & Methodology, Requirements Engineering, Software Design & Architecture, Software Testing & Quality Assurance, Software Project Management, Software Maintenance & Evolution, Human-Computer Interaction (HCI) / UI/UX, Software Metrics & Evaluation, Modeling & Simulation, Software Security',
             'kuota_bimbingan' => 10,
             'kuota_terpakai' => 0,
         ]);
 
-        // Dosen 5 - Network & Security
+        // Dosen 5 - Sistem Pakar
         $user5 = User::create([
             'username' => 'dosen5',
-            'name' => 'Andi Wijaya, M.T',
-            'email' => 'andi.wijaya@unmus.ac.id',
+            'name' => 'Ir. Tatik Melinda Tallulembang, S.Kom,. M.T',
+            'email' => 'Tatik@unmus.ac.id',
             'password' => Hash::make('dosen123'),
             'role' => 'dosen',
             'nidn' => '0123456793',
@@ -107,17 +107,17 @@ class DosenSeeder extends Seeder
         Dosen::create([
             'user_id' => $user5->id,
             'nidn' => '0123456793',
-            'nama' => 'Andi Wijaya, M.T',
-            'bidang_penelitian' => 'Network Security & Cybersecurity',
-            'keywords' => 'Network Security, Cybersecurity, Cryptography, Firewall, Penetration Testing, Ethical Hacking',
+            'nama' => 'Ir. Tatik Melinda Tallulembang, S.Kom,. M.T',
+            'bidang_penelitian' => 'Sistem Pakar',
+            'keywords' => 'Sistem Pakar, Kecerdasan Buatan, Basis Pengetahuan, Inferensi, Mesin Inferensi, Rule-Based System, Forward Chaining, Backward Chaining, Knowledge Acquisition, Knowledge Representation, Decision Support System, Diagnosa Otomatis, Expert System Shell',
             'kuota_bimbingan' => 10,
             'kuota_terpakai' => 0,
         ]);
 
-        // Dosen 6 - Sistem Informasi
+        // Dosen 6 - Data Analitik dan Pembelajaran Mesin
         $user6 = User::create([
             'username' => 'dosen6',
-            'name' => 'Dr. Dewi Lestari, M.M',
+            'name' => 'Ir. Jarot Budiasto, S.T., M.T',
             'email' => 'dewi.lestari@unmus.ac.id',
             'password' => Hash::make('dosen123'),
             'role' => 'dosen',
@@ -127,11 +127,33 @@ class DosenSeeder extends Seeder
         Dosen::create([
             'user_id' => $user6->id,
             'nidn' => '0123456794',
-            'nama' => 'Dr. Dewi Lestari, M.M',
-            'bidang_penelitian' => 'Sistem Informasi Manajemen',
-            'keywords' => 'Sistem Informasi, Manajemen, ERP, CRM, Database Management, Sistem Pendukung Keputusan',
+            'nama' => 'Ir. Jarot Budiasto, S.T., M.T',
+            'bidang_penelitian' => 'Data Analitik dan Pembelajaran Mesin',
+            'keywords' => 'Data Analytics, Machine Learning, Data Mining, Big Data, Classification, Regression, Clustering, Predictive Modeling, Feature Engineering, Data Preprocessing, Model Evaluation, Artificial Intelligence, Deep Learning, Neural Network, Data Visualization',
             'kuota_bimbingan' => 10,
             'kuota_terpakai' => 0,
         ]);
+
+        // Dosen 7 - Pembelajaran Mendalam Pada Pengolahan Citra Di Bidang Pertanian
+        $user7 = User::create([
+            'username' => 'dosen7',
+            'name' => 'Ir. Agustan Latif S.Kom., M.Cs',
+            'email' => 'dewi.lestari@unmus.ac.id',
+            'password' => Hash::make('dosen123'),
+            'role' => 'dosen',
+            'nidn' => '0123456794',
+        ]);
+
+        Dosen::create([
+            'user_id' => $user7->id,
+            'nidn' => '0123456794',
+            'nama' => 'Ir. Agustan Latif S.Kom., M.Cs',
+            'bidang_penelitian' => 'Pembelajaran Mendalam Pada Pengolahan Citra Di Bidang Pertanian',
+            'keywords' => 'Deep Learning, Computer Vision, Digital Image Processing, Convolutional Neural Network (CNN), Image Classification, Image Segmentation, Feature Extraction, Agricultural Image Analysis, Plant Disease Detection, Crop Monitoring, Data Preprocessing, Model Training, Neural Networks',
+            'kuota_bimbingan' => 10,
+            'kuota_terpakai' => 0,
+        ]);
+
+        
     }
 }
