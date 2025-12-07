@@ -16,7 +16,7 @@ class DosenSeeder extends Seeder
     {
         // Dosen 1 - Sistem dan Teknologi Informasi
         $user1 = User::create([
-            'username' => 'dosen1',
+            'username' => 'pak stanly',
             'name' => 'Stanly Hence Dolfi Loppies. S,Kom., M.Kom',
             'email' => 'Stanly@unmus.ac.id',
             'password' => Hash::make('dosen123'),
@@ -36,7 +36,7 @@ class DosenSeeder extends Seeder
 
         // Dosen 2 - Sistem Informasi Geografis
         $user2 = User::create([
-            'username' => 'dosen2',
+            'username' => 'pak fransiskus',
             'name' => 'Fransiskus Xavierus, S.Kom., M.Kom',
             'email' => 'Fransiskus@unmus.ac.id',
             'password' => Hash::make('dosen123'),
@@ -56,7 +56,7 @@ class DosenSeeder extends Seeder
 
         // Dosen 3 - Sistem Pendukung Keputusan
         $user3 = User::create([
-            'username' => 'dosen3',
+            'username' => 'ibu selfina',
             'name' => 'Ir. Selfina Pare, S.Kom., M.T',
             'email' => 'Selfina@unmus.ac.id',
             'password' => Hash::make('dosen123'),
@@ -76,7 +76,7 @@ class DosenSeeder extends Seeder
 
         // Dosen 4 - Rekayasa Perangkat Lunak
         $user4 = User::create([
-            'username' => 'dosen4',
+            'username' => 'pak hasbi',
             'name' => 'Muhammad Hasbi, M.Kom',
             'email' => 'Hasbi@unmus.ac.id',
             'password' => Hash::make('dosen123'),
@@ -96,7 +96,7 @@ class DosenSeeder extends Seeder
 
         // Dosen 5 - Sistem Pakar
         $user5 = User::create([
-            'username' => 'dosen5',
+            'username' => 'ibu tatik',
             'name' => 'Ir. Tatik Melinda Tallulembang, S.Kom,. M.T',
             'email' => 'Tatik@unmus.ac.id',
             'password' => Hash::make('dosen123'),
@@ -116,9 +116,9 @@ class DosenSeeder extends Seeder
 
         // Dosen 6 - Data Analitik dan Pembelajaran Mesin
         $user6 = User::create([
-            'username' => 'dosen6',
+            'username' => 'pak jarot',
             'name' => 'Ir. Jarot Budiasto, S.T., M.T',
-            'email' => 'dewi.lestari@unmus.ac.id',
+            'email' => 'jarot@unmus.ac.id',
             'password' => Hash::make('dosen123'),
             'role' => 'dosen',
             'nidn' => '0123456794',
@@ -136,17 +136,17 @@ class DosenSeeder extends Seeder
 
         // Dosen 7 - Pembelajaran Mendalam Pada Pengolahan Citra Di Bidang Pertanian
         $user7 = User::create([
-            'username' => 'dosen7',
+            'username' => 'pak agustan',
             'name' => 'Ir. Agustan Latif S.Kom., M.Cs',
-            'email' => 'dewi.lestari@unmus.ac.id',
+            'email' => 'agustan@unmus.ac.id',
             'password' => Hash::make('dosen123'),
             'role' => 'dosen',
-            'nidn' => '0123456794',
+            'nidn' => '0123456795',
         ]);
 
         Dosen::create([
             'user_id' => $user7->id,
-            'nidn' => '0123456794',
+            'nidn' => '0123456795',
             'nama' => 'Ir. Agustan Latif S.Kom., M.Cs',
             'bidang_penelitian' => 'Pembelajaran Mendalam Pada Pengolahan Citra Di Bidang Pertanian',
             'keywords' => 'Deep Learning, Computer Vision, Digital Image Processing, Convolutional Neural Network (CNN), Image Classification, Image Segmentation, Feature Extraction, Agricultural Image Analysis, Plant Disease Detection, Crop Monitoring, Data Preprocessing, Model Training, Neural Networks',

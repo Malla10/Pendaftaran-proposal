@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Proposal;
 use App\Models\Dosen;
+use App\Models\Proposal;
 use App\Models\ActivityLog;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -78,44 +79,53 @@ class AdminController extends Controller
     public function assignDosen(Request $request, $proposalId)
     {
         $request->validate([
-            'dosen_id' => 'required|exists:dosen,id',
+            'dosen_ids' => 'required|array|min:1|max:2',
+            'dosen_ids.*' => 'exists:dosen,id',
             'catatan' => 'nullable|string'
         ]);
 
         $proposal = Proposal::findOrFail($proposalId);
-        $dosen = Dosen::findOrFail($request->dosen_id);
+        $selectedDosen = $request->dosen_ids;
 
-        // Check kuota
-        if ($dosen->isKuotaPenuh()) {
-            return back()->with('error', 'Kuota dosen sudah penuh!');
-        }
-
-        // Jika sudah ada dosen sebelumnya, kurangi kuota dosen lama
-        if ($proposal->dosen_pembimbing_id) {
-            $oldDosen = Dosen::find($proposal->dosen_pembimbing_id);
-            if ($oldDosen) {
-                $oldDosen->decrement('kuota_terpakai');
+        // Cek kuota semua dosen
+        foreach ($selectedDosen as $dosenId) {
+            $dosen = Dosen::findOrFail($dosenId);
+            if ($dosen->isKuotaPenuh()) {
+                return back()->with('error', "Kuota dosen {$dosen->nama} sudah penuh!");
             }
         }
 
-        // Update proposal
+        // Kurangi kuota dosen lama (jika ada)
+        if ($proposal->dosen_pembimbing_id) {
+            $old1 = Dosen::find($proposal->dosen_pembimbing_id);
+            if ($old1) $old1->decrement('kuota_terpakai');
+        }
+
+        if ($proposal->dosen_pembimbing_id_2) {
+            $old2 = Dosen::find($proposal->dosen_pembimbing_id_2);
+            if ($old2) $old2->decrement('kuota_terpakai');
+        }
+
+        // Simpan dosen baru
         $proposal->update([
-            'dosen_pembimbing_id' => $dosen->id,
+            'dosen_pembimbing_id' => $selectedDosen[0] ?? null,
+            'dosen_pembimbing_id_2' => $selectedDosen[1] ?? null,
             'status' => 'pembimbing_ditentukan',
             'assigned_by' => Auth::id(),
             'assigned_at' => now(),
             'catatan_admin' => $request->catatan
         ]);
 
-        // Update kuota dosen
-        $dosen->increment('kuota_terpakai');
+        // Tambah kuota baru
+        foreach ($selectedDosen as $dosenId) {
+            Dosen::find($dosenId)->increment('kuota_terpakai');
+        }
 
         // Log aktivitas
         ActivityLog::log(
             Auth::id(),
             'Assign Dosen Pembimbing',
-            "Admin " . Auth::user()->name . " menetapkan " . $dosen->nama . 
-            " sebagai pembimbing untuk proposal: " . $proposal->judul,
+            "Admin " . Auth::user()->name . " menetapkan dosen pembimbing untuk proposal: " . $proposal->judul,
             $proposal->id
         );
 
@@ -185,5 +195,41 @@ class AdminController extends Controller
             ->paginate(20);
 
         return view('admin.activity-logs', compact('logs'));
+    }
+
+    public function destroy($id)
+    {
+        $proposal = Proposal::findOrFail($id);
+
+        if ($proposal->dosen_pembimbing_id) {
+            $dosen1 = Dosen::find($proposal->dosen_pembimbing_id);
+            if ($dosen1 && $dosen1->kuota_terpakai > 0) {
+                $dosen1->decrement('kuota_terpakai');
+            }
+        }
+
+        if ($proposal->dosen_pembimbing_id_2) {
+            $dosen2 = Dosen::find($proposal->dosen_pembimbing_id_2);
+            if ($dosen2 && $dosen2->kuota_terpakai > 0) {
+                $dosen2->decrement('kuota_terpakai');
+            }
+        }
+
+        if ($proposal->file_proposal && Storage::disk('public')->exists($proposal->file_proposal)) {
+            Storage::disk('public')->delete($proposal->file_proposal);
+        }
+
+        ActivityLog::log(
+            auth()->id(),
+            'Delete Proposal',
+            'Menghapus proposal: ' . $proposal->judul,
+            $proposal->id
+        );
+
+        // ✅ Hapus proposal
+        $proposal->delete();
+
+        return redirect()->route('admin.proposals')
+            ->with('success', 'Proposal berhasil dihapus dan kuota dosen telah dikembalikan.');
     }
 }

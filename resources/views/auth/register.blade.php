@@ -201,12 +201,6 @@
                             <option value="Sistem Informasi" {{ old('prodi') == 'Sistem Informasi' ? 'selected' : '' }}>
                                 Sistem Informasi
                             </option>
-                            <option value="Teknik Informatika" {{ old('prodi') == 'Teknik Informatika' ? 'selected' : '' }}>
-                                Teknik Informatika
-                            </option>
-                            <option value="Teknologi Informasi" {{ old('prodi') == 'Teknologi Informasi' ? 'selected' : '' }}>
-                                Teknologi Informasi
-                            </option>
                         </select>
                         @error('prodi')
                             <div class="invalid-feedback">{{ $message }}</div>

@@ -14,6 +14,7 @@ class Proposal extends Model
         'file_proposal',
         'status',
         'dosen_pembimbing_id',
+        'dosen_pembimbing_id_2', // ✅ TAMBAHKAN INI
         'assigned_by',
         'assigned_at',
         'catatan_admin'
@@ -29,9 +30,16 @@ class Proposal extends Model
         return $this->belongsTo(User::class, 'mahasiswa_id');
     }
 
+    // Pembimbing 1
     public function dosenPembimbing()
     {
         return $this->belongsTo(Dosen::class, 'dosen_pembimbing_id');
+    }
+
+    // Pembimbing 2 ✅
+    public function dosenPembimbing2()
+    {
+        return $this->belongsTo(Dosen::class, 'dosen_pembimbing_id_2');
     }
 
     public function assignedBy()

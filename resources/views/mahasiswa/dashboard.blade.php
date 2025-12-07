@@ -71,9 +71,6 @@
                         <i class="fas fa-inbox fa-5x mb-3" style="color: #E0E0E0;"></i>
                         <h5 class="text-muted">Belum Ada Proposal</h5>
                         <p class="text-muted">Anda belum mengajukan proposal tugas akhir</p>
-                        <a href="{{ route('mahasiswa.proposal.create') }}" class="btn btn-primary mt-3">
-                            <i class="fas fa-plus me-2"></i> Ajukan Proposal Pertama
-                        </a>
                     </div>
                 @else
                     <div class="table-responsive">
@@ -111,10 +108,11 @@
                                     <td>
                                         @if($proposal->dosenPembimbing)
                                             <div class="d-flex align-items-center">
-                                                <i class="fas fa-user-tie fa-2x me-2" style="color: #4FC3F7;"></i>
                                                 <div>
-                                                    <strong class="d-block">{{ $proposal->dosenPembimbing->nama }}</strong>
-                                                    <small class="text-muted">{{ $proposal->dosenPembimbing->bidang_penelitian }}</small>
+                                                    <p>Dosen Pembimbing 1:</p>
+                                                    <strong class="d-block">{{ $proposal->dosenPembimbing->nama }}</strong><hr>
+                                                    <p>Dosen Pembimbing 2:</p>
+                                                    <strong class="d-block">{{ $proposal->dosenPembimbing2->nama ?? '-' }}</strong>
                                                 </div>
                                             </div>
                                         @else

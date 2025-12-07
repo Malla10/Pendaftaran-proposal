@@ -49,14 +49,13 @@ class MahasiswaController extends Controller
     {
         $request->validate([
             'judul' => 'required|string|max:255|unique:proposals,judul',
-            'abstrak' => 'required|string|min:100',
+            'abstrak' => 'required|string',
             'keywords' => 'required|string',
             'file_proposal' => 'nullable|file|mimes:pdf|max:5120'
         ], [
             'judul.required' => 'Judul proposal wajib diisi',
             'judul.unique' => 'Judul proposal sudah pernah digunakan, pilih judul lain',
             'abstrak.required' => 'Abstrak wajib diisi',
-            'abstrak.min' => 'Abstrak minimal 100 karakter',
             'keywords.required' => 'Kata kunci wajib diisi',
             'file_proposal.mimes' => 'File harus berformat PDF',
             'file_proposal.max' => 'Ukuran file maksimal 5MB'

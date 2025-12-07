@@ -44,8 +44,9 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('/proposal/{id}', [AdminController::class, 'showProposal'])->name('proposal.show');
     Route::post('/proposal/{id}/assign', [AdminController::class, 'assignDosen'])->name('proposal.assign');
     Route::post('/proposal/{id}/auto-assign', [AdminController::class, 'autoAssign'])->name('proposal.auto-assign');
+    Route::delete('/proposal/{id}', [AdminController::class, 'destroy'])->name('proposal.destroy');
     Route::get('/activity-logs', [AdminController::class, 'activityLogs'])->name('logs');
-    
+
     // CRUD Dosen
     Route::resource('dosen', DosenCrudController::class);
 });

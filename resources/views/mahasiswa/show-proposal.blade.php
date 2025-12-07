@@ -96,12 +96,23 @@
                         <hr>
                         <div class="row">
                             <div class="col-md-6">
-                                <strong>Nama Dosen:</strong><br>
+                                <strong>Nama Dosen Pembimbing 1:</strong><br>
                                 <span class="fs-5">{{ $proposal->dosenPembimbing->nama }}</span>
                             </div>
                             <div class="col-md-6">
                                 <strong>Bidang Penelitian:</strong><br>
                                 <span>{{ $proposal->dosenPembimbing->bidang_penelitian }}</span>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <strong>Nama Dosen Pembimbing 2:</strong><br>
+                                <span class="fs-5">{{ $proposal->dosenPembimbing2->nama ?? '-' }}</span>
+                            </div>
+                            <div class="col-md-6">
+                                <strong>Bidang Penelitian:</strong><br>
+                                <span>{{ $proposal->dosenPembimbing2->bidang_penelitian ?? '-' }}</span>
                             </div>
                         </div>
                         @if($proposal->catatan_admin)
@@ -117,9 +128,9 @@
 
     <!-- Right Column - Rekomendasi Dosen -->
     <div class="col-lg-4">
-        <div class="card sticky-top" style="top: 20px;">
+        <div class="card">
             <div class="card-header">
-                <i class="fas fa-star me-2"></i> Rekomendasi Dosen Pembimbing
+                <i class="fas fa-star me-2"></i>Dosen Pembimbing
             </div>
             <div class="card-body">
                 @if($proposal->status == 'menunggu_penetapan')
@@ -134,21 +145,6 @@
                     <div class="card mb-3 {{ $index == 0 ? 'border-warning' : 'border-light' }}" 
                          style="box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
                         <div class="card-body">
-                            @if($index == 0)
-                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <span class="badge bg-warning text-dark">
-                                        <i class="fas fa-crown me-1"></i>Rekomendasi Terbaik
-                                    </span>
-                                    <span class="badge" style="background: linear-gradient(135deg, #4FC3F7, #29B6F6);">
-                                        Rank #{{ $rec->rank }}
-                                    </span>
-                                </div>
-                            @else
-                                <div class="text-end mb-2">
-                                    <span class="badge bg-secondary">Rank #{{ $rec->rank }}</span>
-                                </div>
-                            @endif
-                            
                             <!-- Nama Dosen -->
                             <h6 class="fw-bold mb-2" style="color: #0277BD;">
                                 {{ $rec->dosen->nama }}
@@ -160,22 +156,6 @@
                                 {{ $rec->dosen->bidang_penelitian }}
                             </p>
 
-                            <!-- Skor Kecocokan -->
-                            <div class="mb-3">
-                                <div class="d-flex justify-content-between mb-1">
-                                    <small class="fw-bold">Skor Kecocokan</small>
-                                    <small class="fw-bold">{{ round($rec->match_score) }}%</small>
-                                </div>
-                                <div class="progress" style="height: 25px;">
-                                    <div class="progress-bar" 
-                                         style="width: {{ $rec->match_score }}%; 
-                                                background: linear-gradient(90deg, #4FC3F7, #29B6F6);"
-                                         role="progressbar">
-                                        {{ round($rec->match_score) }}%
-                                    </div>
-                                </div>
-                            </div>
-
                             <!-- Info Kuota -->
                             <div class="d-flex justify-content-between mb-3">
                                 <small>
@@ -185,11 +165,6 @@
                                 <small class="fw-bold">
                                     {{ $rec->dosen->getSisaKuota() }}/{{ $rec->dosen->kuota_bimbingan }}
                                 </small>
-                            </div>
-
-                            <!-- Rating Stars -->
-                            <div class="text-center mb-3" style="font-size: 1.5rem; color: #FFA726;">
-                                {{ $rec->getStarRating() }}
                             </div>
 
                             <!-- Keywords Dosen -->
